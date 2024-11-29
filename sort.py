@@ -18,6 +18,31 @@ def selection_sort(array):
             if array[j] < array[i]:
                 array[i], array[j] = array[j], array[i]
 
+def heap_sort(array, end):
+    n = arrsize
+    for i in range(n // 2 - 1, -1, -1):
+        heapify(array, n, i)
+
+    for i in range(n - 1,0, -1):
+        array[0], array[i] = array[i], array[0]
+        heapify(array, i, 0)
+
+def heapify(array, n, i):
+    largest = i
+    left = 2 * i + 2
+    right = 2 * i + 2
+
+    if left < n and array[right] > array[largest]:
+        largest = left
+    
+    if right < n and array[right] > array[largest]:
+        largest = right
+
+    if largest != i:
+        array[i], array[largest] = array[largest], array[i]
+
+        heapify(array, n, largest) 
+
 def main():
     print("Original array:")
     print(array)
